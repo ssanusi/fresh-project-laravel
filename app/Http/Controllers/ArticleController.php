@@ -15,4 +15,20 @@ class ArticleController extends Controller
     {
         return view('article.show', ['article' => Article::find($articleId) ]);
     }
+
+    public function create()
+    {
+        return view('article.create');
+    }
+
+    public function store()
+    {
+        $article = new Article();
+
+        $article->title = request('title');
+        $article->excerpt = request('excerpt');
+        $article->body = request('body');
+        $article->save();
+        return redirect('/articles');
+    }
 }
