@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/contact', 'ContactController@show');
+Route::post('/contact', 'ContactController@store');
+Route::get('/payments/create', 'PaymentController@create')->middleware('auth');
+Route::post('/payments', 'PaymentController@store')->middleware('auth');
+
 Route::get('about', function (){
     return view('about', ['articles' => App\Article::latest()->get()]);
 });
@@ -27,3 +32,7 @@ Route::get('articles/create', 'ArticleController@create');
 Route::get('articles/{article}', 'ArticleController@show')->name('article.show');
 Route::get('articles/{article}/edit', 'ArticleController@edit');
 Route::put('articles/{article}', 'ArticleController@update');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

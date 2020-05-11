@@ -12,13 +12,13 @@ Released   : 20140225
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
-    <link href="/css/default.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet"/>
+    <link href="/css/default.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/css/fonts.css" rel="stylesheet" type="text/css" media="all"/>
     @yield('head')
 </head>
 <body>
@@ -29,11 +29,28 @@ Released   : 20140225
         </div>
         <div id="menu">
             <ul>
-                <li class="{{Request::path() == '/' ? "current_page_item" : ""}}"><a href="/" accesskey="1" title="">Homepage</a></li>
-                <li class="{{Request::path() == 'our-client' ? "current_page_item" : ""}}"><a href="#" accesskey="2" title="">Our Clients</a></li>
-                <li class="{{Request::path() == 'about' ? "current_page_item" : ""}}"><a href="/about" accesskey="3" title="">About Us</a></li>
-                <li class="{{Request::path() == 'articles' ? "current_page_item" : ""}}"><a href="/articles" accesskey="4" title="">Article</a></li>
-                <li class="{{Request::path() == 'contact-us' ? "current_page_item" : ""}}"><a href="#" accesskey="5" title="">Contact Us</a></li>
+                <li class="{{Request::path() == '/' ? "current_page_item" : ""}}"><a href="/" accesskey="1" title="">Homepage</a>
+                </li>
+                <li class="{{Request::path() == 'our-client' ? "current_page_item" : ""}}"><a href="#" accesskey="2"
+                                                                                              title="">Our Clients</a>
+                </li>
+                <li class="{{Request::path() == 'about' ? "current_page_item" : ""}}"><a href="/about" accesskey="3"
+                                                                                         title="">About Us</a></li>
+                <li class="{{Request::path() == 'articles' ? "current_page_item" : ""}}"><a href="/articles"
+                                                                                            accesskey="4" title="">Article</a>
+                </li>
+                <li class="{{Request::path() == 'contact' ? "current_page_item" : ""}}"><a href="/contact" accesskey="5"
+                                                                                           title="">Contact Us</a></li>
+                @if(Route::has('login'))
+                    @auth
+                        <li><a href="{{ url('/home')}}" accesskey="6" title="">Home</a></li>
+                    @else
+                        <li><a href="{{ url('/login')}}" accesskey="7" title="">Login</a></li>
+                        @if(Route::has('register'))
+                            <li><a href="{{ url('/register')}}" accesskey="8" title="">Register</a></li>
+                        @endif
+                    @endauth
+                @endif
             </ul>
         </div>
     </div>
@@ -42,6 +59,7 @@ Released   : 20140225
 </div>
 </body>
 <div id="copyright" class="container">
-    <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+    <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a
+            href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
 </div>
 </html>
