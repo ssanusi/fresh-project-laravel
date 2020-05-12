@@ -21,6 +21,7 @@ Route::get('/contact', 'ContactController@show');
 Route::post('/contact', 'ContactController@store');
 Route::get('/payments/create', 'PaymentController@create')->middleware('auth');
 Route::post('/payments', 'PaymentController@store')->middleware('auth');
+Route::get('/notifications', 'UserNotificationController@show');
 
 Route::get('about', function (){
     return view('about', ['articles' => App\Article::latest()->get()]);
